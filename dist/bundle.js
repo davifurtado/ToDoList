@@ -10757,6 +10757,7 @@
 	function render(el, state) {
 	    var todoItems = state.todos.map(renderTodoItem).join('');
 	    el.innerHTML = renderApp(renderInput(), renderTodos(todoItems));
+	    document.getElementById('todoInput').focus();
 	}
 
 	function renderApp(input, todoList) {
@@ -10776,7 +10777,7 @@
 	}
 
 	function renderInput() {
-	    return '<div class="todo__input"><input type="text" id="todoInput"><button id="addTodo">Add</button></div>';
+	    return '<div class="todo__input"><input autoFocus type="text" id="todoInput"><button id="addTodo">Add</button></div>';
 	}
 
 	function renderTodos(todoItems) {

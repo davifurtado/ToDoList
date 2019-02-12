@@ -1,4 +1,5 @@
 import {isEnabled} from './lib/feature';
+import {readData} from './state.js';
 
 export function render(el, state) {
     const todoItems = state.todos.map(renderTodoItem).join('');
@@ -7,6 +8,7 @@ export function render(el, state) {
         renderTodos(todoItems)
     );
     document.getElementById('todoInput').focus();
+    readData();
 }
 
 function renderApp(input, todoList) {

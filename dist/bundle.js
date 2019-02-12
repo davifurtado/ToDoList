@@ -9326,9 +9326,9 @@
 
 	var _state = __webpack_require__(337);
 
-	var _view = __webpack_require__(392);
+	var _view = __webpack_require__(394);
 
-	var _events = __webpack_require__(394);
+	var _events = __webpack_require__(396);
 
 	_state.todos.subscribe(function (newState) {
 	  return (0, _view.render)(document.body, newState);
@@ -9701,7 +9701,13 @@
 
 	var _getIterator3 = _interopRequireDefault(_getIterator2);
 
-	var _state = __webpack_require__(391);
+	var _stringify = __webpack_require__(391);
+
+	var _stringify2 = _interopRequireDefault(_stringify);
+
+	exports.readData = readData;
+
+	var _state = __webpack_require__(393);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -9724,6 +9730,18 @@
 	        done: false
 	    }]
 	};
+
+	function storeData(state) {
+	    return localStorage.setItem('toDoList', (0, _stringify2.default)(state));
+	}
+
+	function readData() {
+	    var cache = localStorage.getItem('toDoList');
+
+	    if (cache) {
+	        return console.log(JSON.parse(cache));
+	    }
+	}
 
 	function todoChangeHandler(state, change) {
 	    switch (change.type) {
@@ -9765,6 +9783,7 @@
 
 	            break;
 	    }
+	    storeData(state);
 	}
 
 	var todos = exports.todos = (0, _state.createStore)(todoChangeHandler, initialState);
@@ -10685,6 +10704,23 @@
 /* 391 */
 /***/ (function(module, exports, __webpack_require__) {
 
+	module.exports = { "default": __webpack_require__(392), __esModule: true };
+
+/***/ }),
+/* 392 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	var core = __webpack_require__(353);
+	var $JSON = core.JSON || (core.JSON = { stringify: JSON.stringify });
+	module.exports = function stringify(it) { // eslint-disable-line no-unused-vars
+	  return $JSON.stringify.apply($JSON, arguments);
+	};
+
+
+/***/ }),
+/* 393 */
+/***/ (function(module, exports, __webpack_require__) {
+
 	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
@@ -10742,7 +10778,7 @@
 		}
 
 /***/ }),
-/* 392 */
+/* 394 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -10752,12 +10788,15 @@
 	});
 	exports.render = render;
 
-	var _feature = __webpack_require__(393);
+	var _feature = __webpack_require__(395);
+
+	var _state = __webpack_require__(337);
 
 	function render(el, state) {
 	    var todoItems = state.todos.map(renderTodoItem).join('');
 	    el.innerHTML = renderApp(renderInput(), renderTodos(todoItems));
 	    document.getElementById('todoInput').focus();
+	    (0, _state.readData)();
 	}
 
 	function renderApp(input, todoList) {
@@ -10790,7 +10829,7 @@
 		}
 
 /***/ }),
-/* 393 */
+/* 395 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -10804,7 +10843,7 @@
 	}
 
 /***/ }),
-/* 394 */
+/* 396 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -10813,7 +10852,7 @@
 	    value: true
 	});
 
-	var _parseInt = __webpack_require__(395);
+	var _parseInt = __webpack_require__(397);
 
 	var _parseInt2 = _interopRequireDefault(_parseInt);
 
@@ -10821,9 +10860,9 @@
 
 	var _state = __webpack_require__(337);
 
-	var _events = __webpack_require__(401);
+	var _events = __webpack_require__(403);
 
-	var _actions = __webpack_require__(402);
+	var _actions = __webpack_require__(404);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -10853,36 +10892,36 @@
 	}
 
 /***/ }),
-/* 395 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	module.exports = { "default": __webpack_require__(396), __esModule: true };
-
-/***/ }),
-/* 396 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	__webpack_require__(397);
-	module.exports = __webpack_require__(353).Number.parseInt;
-
-
-/***/ }),
 /* 397 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var $export = __webpack_require__(351);
-	var $parseInt = __webpack_require__(398);
-	// 20.1.2.13 Number.parseInt(string, radix)
-	$export($export.S + $export.F * (Number.parseInt != $parseInt), 'Number', { parseInt: $parseInt });
-
+	module.exports = { "default": __webpack_require__(398), __esModule: true };
 
 /***/ }),
 /* 398 */
 /***/ (function(module, exports, __webpack_require__) {
 
+	__webpack_require__(399);
+	module.exports = __webpack_require__(353).Number.parseInt;
+
+
+/***/ }),
+/* 399 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	var $export = __webpack_require__(351);
+	var $parseInt = __webpack_require__(400);
+	// 20.1.2.13 Number.parseInt(string, radix)
+	$export($export.S + $export.F * (Number.parseInt != $parseInt), 'Number', { parseInt: $parseInt });
+
+
+/***/ }),
+/* 400 */
+/***/ (function(module, exports, __webpack_require__) {
+
 	var $parseInt = __webpack_require__(352).parseInt;
-	var $trim = __webpack_require__(399).trim;
-	var ws = __webpack_require__(400);
+	var $trim = __webpack_require__(401).trim;
+	var ws = __webpack_require__(402);
 	var hex = /^[-+]?0[xX]/;
 
 	module.exports = $parseInt(ws + '08') !== 8 || $parseInt(ws + '0x16') !== 22 ? function parseInt(str, radix) {
@@ -10892,13 +10931,13 @@
 
 
 /***/ }),
-/* 399 */
+/* 401 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var $export = __webpack_require__(351);
 	var defined = __webpack_require__(348);
 	var fails = __webpack_require__(362);
-	var spaces = __webpack_require__(400);
+	var spaces = __webpack_require__(402);
 	var space = '[' + spaces + ']';
 	var non = '\u200b\u0085';
 	var ltrim = RegExp('^' + space + space + '*');
@@ -10928,7 +10967,7 @@
 
 
 /***/ }),
-/* 400 */
+/* 402 */
 /***/ (function(module, exports) {
 
 	module.exports = '\x09\x0A\x0B\x0C\x0D\x20\xA0\u1680\u180E\u2000\u2001\u2002\u2003' +
@@ -10936,7 +10975,7 @@
 
 
 /***/ }),
-/* 401 */
+/* 403 */
 /***/ (function(module, exports) {
 
 	"use strict";
@@ -10954,7 +10993,7 @@
 	}
 
 /***/ }),
-/* 402 */
+/* 404 */
 /***/ (function(module, exports) {
 
 	'use strict';

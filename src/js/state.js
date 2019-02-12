@@ -25,6 +25,18 @@ const initialState = {
     ]
 };
 
+function storeData(state) {
+        return localStorage.setItem('toDoList', JSON.stringify(state))
+    }
+
+export function readData() {
+        const cache = localStorage.getItem('toDoList')
+
+        if (cache) {
+            return console.log(JSON.parse(cache))
+        }
+    }
+
 function todoChangeHandler(state, change) {
     switch(change.type) {
         case 'ADD_TODO':
@@ -43,6 +55,7 @@ function todoChangeHandler(state, change) {
             }
             break;
     }
+    storeData(state);
 }
 
 export const todos = createStore(todoChangeHandler, initialState);

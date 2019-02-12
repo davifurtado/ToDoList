@@ -10827,12 +10827,24 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function registerEventHandlers() {
+	    (0, _events.listen)('keypress', '#todoInput', function (event) {
+	        if (event.keyCode === 13) {
+	            var todoInput = document.getElementById('todoInput');
+	            _state.todos.dispatch((0, _actions.addTodo)(todoInput.value));
+	            event.stopPropagation();
+	        }
+	    });
+	    (0, _events.listen)('keypress', '.js_toggle_todo', function (event) {
+	        if (event.keyCode === 13) {
+	            var id = (0, _parseInt2.default)(event.target.getAttribute('data-id'), 10);
+	            _state.todos.dispatch((0, _actions.toggleTodoState)(id));
+	        }
+	    });
 	    (0, _events.listen)('click', '#addTodo', function (event) {
 	        var todoInput = document.getElementById('todoInput');
 	        _state.todos.dispatch((0, _actions.addTodo)(todoInput.value));
 	        event.stopPropagation();
 	    });
-
 	    (0, _events.listen)('click', '.js_toggle_todo', function (event) {
 	        var id = (0, _parseInt2.default)(event.target.getAttribute('data-id'), 10);
 	        _state.todos.dispatch((0, _actions.toggleTodoState)(id));

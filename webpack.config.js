@@ -1,5 +1,7 @@
 var path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
     entry: ['babel-polyfill', path.normalize(__dirname + '/src/js/main')],
@@ -27,6 +29,8 @@ module.exports = {
         ]
     },
     plugins: [    
-    new ExtractTextPlugin('style.css')
+        new ExtractTextPlugin('style.css'),
+        new OptimizeCssAssetsPlugin({}),
+        new UglifyJsPlugin({})
     ]
 };

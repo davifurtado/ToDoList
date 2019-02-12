@@ -9373,7 +9373,7 @@
 
 
 	// module
-	exports.push([module.id, "html, body, .todo {\n    margin: 0;\n    padding: 0;\n}\n\n.todo {\n    list-style-type: none;\n}\n\n.todo__input, .todo__item {\n    margin: 10px;\n}\n\n.todo__item--done {\n    text-decoration: line-through;\n}\n\n#addTodo {\n    margin-left: 10px;\n}\n", ""]);
+	exports.push([module.id, "html, body, .todo {\n    margin: 0;\n    padding: 0;\n    background: linear-gradient(to right, rgb(184, 184, 184), rgb(44, 44, 44)) repeat scroll 0% 0%;\n    text-align: center;\n    justify-content: left; \n\n}\n\nh1 {\n\tfont: 'Raleway', sans-serif;\n    text-shadow: 0 0 20px white;\n    color: rgba(253, 102, 2);\n    text-align: center;\n    text-transform: uppercase;\n    letter-spacing: .5em;\n    top: 15%;\t\n}\n\n.todo {\n    list-style-type: none;\n}\n\n.todo__input, .todo__item {\n    margin: 10px;\n    font: 'Raleway', sans-serif;\n    border: black;\n}\n\n.todo__item--done {\n    text-decoration: line-through;\n    color: red;\n}\n\n#addTodo {\n    margin-left: 10px;\n    background: #d9d9d9;\n \tcolor: #555; \n \tcursor: pointer; \n}\n\n.renderTodos {\n\ttext-align: left;\n}\n\n.renderTodoItem {\n\ttext-align: left;\n}\n\nul li {\n  position: relative;\n  padding: 12px 8px 12px 40px;\n  background: #eee;\n  font-size: 18px;\n  transition: 0.2s;\n}\n\nul li:hover {\n  background: #ddd;\n}\n", ""]);
 
 	// exports
 
@@ -10769,11 +10769,11 @@
 	}
 
 	function renderAddTodoAtTop(input, todoList) {
-	    return '<div id="app">\n        ' + input + '\n        ' + todoList + '\n    </div>';
+	    return '<div id="app">\n        <div id="titulo"><h1>Sophisticated Todo List!</h1></div>\n        ' + input + '\n        ' + todoList + '\n    </div>';
 	}
 
 	function renderAddTodoAtBottom(input, todoList) {
-	    return '<div id="app">\n        ' + todoList + '\n        ' + input + '\n    </div>';
+	    return '<div id="app">\n        ' + todoList + '\n        ' + input + '\n        <div id="titulo"><h1>Sophisticated Todo List!</h1></div>\n    </div>';
 	}
 
 	function renderInput() {

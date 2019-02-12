@@ -19,6 +19,7 @@ function renderApp(input, todoList) {
 
 function renderAddTodoAtTop(input, todoList) {
     return `<div id="app">
+        <div id="titulo"><h1>Sophisticated Todo List!</h1></div>
         ${input}
         ${todoList}
     </div>`;
@@ -28,6 +29,7 @@ function renderAddTodoAtBottom(input, todoList) {
     return `<div id="app">
         ${todoList}
         ${input}
+        <div id="titulo"><h1>Sophisticated Todo List!</h1></div>
     </div>`;
 }
 
